@@ -19,3 +19,9 @@ Route::get('/', function () {
 Route::get('/admin', function(){
     return view('admin.adminIndex');
 });
+
+route::prefix('admin')->group(function(){
+    route::get('/addCategory',function(){
+        return view('admin.addCategory');
+    })->name('add.category');
+});
