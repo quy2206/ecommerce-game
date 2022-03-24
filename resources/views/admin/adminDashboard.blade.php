@@ -23,6 +23,7 @@
 <!-- /.content-header -->
 <section class="content">
     <div class="container-fluid">
+            @include('admin.alert')
             @yield('content')
     </div>
 </section>

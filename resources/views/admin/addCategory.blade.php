@@ -9,15 +9,16 @@
                 </div>
 
 
-                <form>
+                <form action="{{route('store.category')}}" method="POST">
+                    @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="name" class="form-control" id="name" placeholder="Enter category">
+                            <input type="text" class="form-control" name='name'id="name" placeholder="Enter category">
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <input type="status" class="form-control" id="status" placeholder="1">
+                            <input type="text" class="form-control" name='status' id="status" placeholder="1">
                         </div>
 
                     </div>

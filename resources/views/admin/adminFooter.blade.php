@@ -1,10 +1,8 @@
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+</aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -14,7 +12,7 @@
 <script src="../adminSide/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="../adminSide/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -42,5 +40,19 @@
 <script src="../adminSide/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../adminSide/dist/js/pages/dashboard.js"></script>
+<script>
+    //Date and time picker
+    $('#beginDate').datetimepicker({
+        icons: {
+            time: 'far fa-clock'
+        }
+    });
+    $('#endDate').datetimepicker({
+        icons: {
+            time: 'far fa-clock'
+        }
+    });
+</script>
 </body>
+
 </html>
