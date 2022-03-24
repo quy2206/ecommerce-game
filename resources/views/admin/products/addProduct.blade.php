@@ -34,6 +34,30 @@
                             </Select>
                         </div>
                         <div class="form-group">
+                            <label for="thumb">Thumbnail</label>
+                            <input type="text" class="form-control" name='thumb' id="thumb" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" name='description' id="description" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <input type="text" class="form-control" name='content' id="description" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <input type="text" class="form-control" name='status' id="description" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Quantity</label>
+                            <input type="text" class="form-control" name='qty'  id="description" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="text" class="form-control" name='price' id="description" placeholder="">
+                        </div>
+                        <div class="form-group">
                             <label for="status">Status</label>
                             <input type="text" class="form-control" name='status' id="status" placeholder="">
                         </div>
