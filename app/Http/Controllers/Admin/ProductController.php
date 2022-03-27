@@ -3,8 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\StoreRequest;
 use Illuminate\Http\Request;
 use App\Http\Services\MenuService;
+use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 class ProductController extends Controller
 {
     /**
@@ -13,13 +21,26 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $menuService;
+
+
     public function __construct(MenuService $menuService)
     {
         $this->menuService = $menuService;
     }
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $products = DB::table('products')
+
+        ->leftJoin('categories','products.category_id','=','categories.id')
+        ->select('Products.*', 'categories.name as category_name')
+        ->get()
+        ;
+
+        return view('admin.products.index',[
+            'products'=>$products,
+
+
+        ]);
     }
 
     /**
@@ -30,7 +51,7 @@ class ProductController extends Controller
     public function create()
     {
         $cate = $this->menuService->getParent();
-        return view('admin.products.addProduct', [
+        return view('admin.products.create', [
             'cate'=> $cate
         ]);
     }
@@ -43,7 +64,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $this->menuService->storeProduct($request);
+        return redirect()->back();
+
     }
 
     /**
@@ -63,9 +87,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $products)
     {
-        //
+        $categories = Category::get();
+        return view('admin.products.edit',[
+            'products'=> $products,
+            'categories'=> $categories
+        ]);
     }
 
     /**
@@ -77,7 +105,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $oldThumbnail = $product->thumbnail;
+
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->content = $request->content;
+        $product->quantity = $request->quantity;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+
+        if(!empty($request->file)){
+            $image = $request->file('file');
+            $imageName = time().'.'.$image->extension();
+            $image->move(public_path('images'),$imageName);
+            $product->thumbnail = $imageName;
+        }
+
+        try {
+            $product->save();
+            if(!empty($image)){
+                Storage::delete(public_path('images/'.$oldThumbnail.''));
+            }
+            return redirect()->route('index.product')->with('success','Cập nhật thành công');
+        } catch (\Exception $err) {
+            return redirect()->back()
+            ->with('error','Cập nhật thất bại')
+            ->withInput();
+        }
     }
 
     /**

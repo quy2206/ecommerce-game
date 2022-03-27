@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Promotion;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-
-class PromotionController extends Controller
+use App\Http\Services\UploadService;
+class UploadController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    protected $uploadService;
+    public function __construct(UploadService $uploadService)
+    {
+        $this->uploadService=$uploadService;
+    }
     public function index()
     {
         //
@@ -26,7 +29,7 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        return view('admin.promotion.addPromotion');
+        //
     }
 
     /**
@@ -37,22 +40,8 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
+        
 
-        try {
-            Promotion::create([
-                'code'=>$request->code,
-                'type'=>$request->type,
-                'discount'=>$request->discount,
-                'begin_date'=>$request->begin_date,
-                'end_date'=>$request->end_date,
-                'quantity'=>$request->quantity,
-                'status'=>$request->status,
-            ]);
-            $request->session()->flash('success', 'Tạo Promotion thành công');
-        } catch (\Exception $err) {
-            $request->session()->flash('error','Tạo Promotion thất bại');
-        }
-        return redirect()->back();
     }
 
     /**

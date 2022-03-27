@@ -1,6 +1,6 @@
-@include('admin.adminHeader')
+@include('admin.layout.header')
 
-@include('admin.adminSidebar')
+@include('admin.layout.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper" style="min-height: 80px;">
@@ -23,11 +23,16 @@
 <!-- /.content-header -->
 <section class="content">
     <div class="container-fluid">
-            @include('admin.alert')
+            @include('admin.layout.alert')
             @yield('content')
     </div>
 </section>
 <!-- /.content-wrapper -->
 <div>
 
-@include('admin.adminFooter')
+@include('admin.layout.footer')
+
+@include('admin.layout.js')
+</body>
+
+</html>
