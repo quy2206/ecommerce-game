@@ -1,5 +1,5 @@
-@extends('admin.adminDashboard')
-@section('content')
+    @extends('admin.layout.master')
+    @section('content')
     <div class="row">
         <div class="col-md-10">
 
@@ -16,14 +16,12 @@
                             <label for="name">Name</label>
                             <input type="text" class="form-control" name='name'id="name" placeholder="Enter category">
                         </div>
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <input type="text" class="form-control" name='status' id="status" placeholder="1">
-                        </div>
+
 
                     </div>
 
                     <div class="card-footer">
+                        <a href="{{route('index.category')}}" class="btn btn-secondary"><i class="fas fa-long-arrow-alt-left"></i> <span class="ml-2">Category list</span></a>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
