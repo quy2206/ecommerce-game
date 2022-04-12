@@ -4,7 +4,7 @@
      <a href="index3.html" class="brand-link">
          <img src="/adminSide/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-         <span class="brand-text font-weight-light">AdminLTE 3</span>
+         <span class="brand-text font-weight-light">Shop Manager</span>
      </a>
 
      <!-- Sidebar -->
@@ -20,7 +20,7 @@
          </div>
 
          <!-- SidebarSearch Form -->
-         <div class="form-inline">
+         {{-- <div class="form-inline">
              <div class="input-group" data-widget="sidebar-search">
                  <input class="form-control form-control-sidebar" type="search" placeholder="Search"
                      aria-label="Search">
@@ -30,7 +30,7 @@
                      </button>
                  </div>
              </div>
-         </div>
+         </div> --}}
 
          <!-- Sidebar Menu -->
          <nav class="mt-2">
@@ -42,29 +42,15 @@
                      <a href="#" class="nav-link active">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
-                             Dashboard
-                             <i class="right fas fa-angle-left"></i>
+                             Home
+
                          </p>
                      </a>
-                     <ul class="nav nav-treeview">
-                         <li class="nav-item">
-                             <a href="./index.html" class="nav-link active">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Dashboard</p>
-                             </a>
-                         </li>
-                         <!-- <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li> -->
 
-                     </ul>
                  </li>
                  <li class="nav-item">
                      <a href="#" class="nav-link active">
-                         <i class="nav-icon fas fa-edit"></i>
+                         <i class="nav-icon fa-brands fa-solid fa-shirt"></i>
                          <p>
                              Product Manage
                              <i class="fas fa-angle-left right"></i>
@@ -73,28 +59,23 @@
                      <ul class="nav nav-treeview" style="display: none;">
                          <li class="nav-item">
                              <a href="{{route('index.product')}}" class="nav-link active">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Product Dashboard</p>
+
+                                 <p>Product List </p>
                              </a>
                          </li>
                          <li class="nav-item">
                              <a href="{{route('add.product')}}" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
+
                                  <p>Add Product</p>
                              </a>
                          </li>
-                         <li class="nav-item">
-                             <a href="" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Update Product</p>
-                             </a>
-                         </li>
+
 
                      </ul>
                  </li>
                  <li class="nav-item">
                     <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-edit"></i>
+                        <i class="nav-icon fa-solid fa-gifts"></i>
                         <p>
                             Promotion Manage
                             <i class="fas fa-angle-left right"></i>
@@ -102,14 +83,14 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Promotion Dashboard</p>
+                            <a href="{{route('index.promotion')}}" class="nav-link">
+
+                                <p>Promotion List </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('add.promotion') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Add Promotion</p>
                             </a>
                         </li>
@@ -119,7 +100,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-edit"></i>
+                        <i class="nav-icon fa-solid fa-list"></i>
                         <p>
                             Categories Manage
                             <i class="fas fa-angle-left right"></i>
@@ -128,18 +109,43 @@
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
                             <a href="{{route('index.category')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Category Dashboard</p>
+
+                                <p>Category List</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
                             <a href="{{route('add.category')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Add Category</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                        <p>
+                            Order Manage
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{{route('index.order')}}" class="nav-link">
+
+                                <p>Order List</p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('add.promotion') }}" class="nav-link">
+
+                                <p>Add Promotion</p>
+                            </a>
+                        </li> --}}
+
+
                     </ul>
                 </li>
 

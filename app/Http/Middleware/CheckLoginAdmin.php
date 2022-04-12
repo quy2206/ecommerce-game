@@ -24,7 +24,7 @@ class CheckLoginAdmin
 
         // check login: if (Login is OK && routeName == ['admin.login', 'admin.login.handle']) then redirect to Dashboard page
         if (Auth::guard('admin')->check() && in_array(Route::currentRouteName(), ['admin.login', 'admin.login.handle'])) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.index');
         }
         return $next($request);
     }

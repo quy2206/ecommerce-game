@@ -28,7 +28,7 @@ class OrderDetail extends Model
     public function getFormatPriceAttribute()
     {
         // Format and Return
-        return number_format($this->price) . ' ' . trans('message.currency');
+        return number_format($this->price) . ' ' . 'VND';
     }
     public function order()
     {

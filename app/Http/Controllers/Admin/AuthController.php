@@ -8,8 +8,7 @@ use Validator;
 use Illuminate\Support\Facades\Session;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Http\Requests;
-use App\Models\Admin;
+
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -41,7 +40,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest:admin', ['except' => 'logout']);
+        $this->middleware('guest:admin', ['except' => 'logout']);
     }
 
     public function getLogin()
@@ -56,6 +55,8 @@ class AuthController extends Controller
      */
     public function postLogin(Request $request)
     {
+        $remember =$request->input('remember');
+
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
@@ -64,7 +65,7 @@ class AuthController extends Controller
         {
             $user = auth()->guard('admin')->user();
 
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.index');
 
         } else {
             return back()->with('error','your username and password are wrong.');

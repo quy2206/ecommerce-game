@@ -13,7 +13,7 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Name <span class="required">(*)</span></label>
                             <input type="text" class="form-control" name='name'id="name" placeholder="Enter category">
                         </div>
 

@@ -41,8 +41,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.add',[
-            'tittle'=>'Thêm Danh Mục'
+        return view('admin.category.create',[
+            'tittle'=>'Add Category'
         ]);
     }
 
@@ -114,6 +114,7 @@ class CategoryController extends Controller
     {
 
         $categories = Category::where('id', $request->input('id'))->first();
+
         $result=$categories->delete();
         if($result){
             return response()->json([

@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="file">Thumbnail</label>
                             <input type="file" name="file" id="file" class="form-control " onchange="previewFile(this)">
-                            <img src="/images/{{$products->thumbnail}}" id="previewImg" style="max-width:130px; margin-top:20px;">
+                            <img src="/product_upload/product_thumbnail/{{$products->thumbnail}}" id="previewImg" style="max-width:130px; margin-top:20px;">
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -65,6 +65,7 @@
                     </div>
 
                     <div class="card-footer">
+                        <a href="{{ route('index.product') }}" class="btn btn-primary"><i class="fas fa-long-arrow-alt-left"></i> <span class="ml-2">Product List</span></a>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>

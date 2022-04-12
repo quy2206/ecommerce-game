@@ -1,8 +1,10 @@
 @extends('admin.layout.master')
+
 @push('js')
-<script src="/adminSide/dist/js/product/product-list.js"></script>
+    <script src="/adminSide/dist/js/product/product-list.js"></script>
 @endpush
 @section('content')
+    @include('admin.layout.alert')
     <div class="row">
         <div class="col-md-10">
 
@@ -12,22 +14,31 @@
                 </div>
 
 
+
                 <form action="{{ route('store.product') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="productName">Product Name</label>
-                            <input type="text" class="form-control" value="{{old('name')}}" name='name' id="productName" placeholder="">
+                            <label for="productName">Product Name <span class="required">(*)</span></label>
+                            <input type="text" class="form-control" value="{{ old('name') }}" name='name'
+                                id="productName" placeholder="">
+
+                            @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="category">Category</label>
+                            <label for="category">Category<span class="required">(*)</span></label>
                             <Select class="form-control" name="category_id">
                                 @foreach ($cate as $cates)
                                     <option value="{{ $cates->id }}">{{ $cates->name }}</option>
                                 @endforeach
 
                             </Select>
-
+                            @error('category')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="promotion">Promotion</label>
@@ -36,21 +47,26 @@
                             </Select>
                         </div>
                         <div class="form-group">
-                            <label for="file">Thumbnail</label>
+                            <label for="file">Thumbnail<span class="required">(*)</span></label>
                             <input type="file" name="file" id="file" class="form-control " onchange="previewFile(this)">
                             <img src="" id="previewImg" style="max-width:130px; margin-top:20px;">
+                            @error('file')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
                             <input type="text" class="form-control" name="description" id="description" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="summernote">Content</label> <br>
+                            <label for="summernote">Content<span class="required">(*)</span></label> <br>
                             <textarea name="content" id="summernote">
 
                             </textarea>
 
-
+                            @error('summernote')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -58,8 +74,11 @@
                             <input type="text" class="form-control" name='quantity' id="quantity" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="price">Price</label>
-                            <input type="text" class="form-control"  name='price' id="price" placeholder="">
+                            <label for="price">Price<span class="required">(*)</span></label>
+                            <input type="text" class="form-control" name='price' id="price" placeholder="">
+                            @error('price')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>
@@ -76,7 +95,7 @@
 
         </div>
     </div>
-@section('javascript')
+
     <script>
         function previewFile(input) {
             var file = $("input[type=file]").get(0).files[0];
@@ -88,6 +107,14 @@
                 reader.readAsDataURL(file);
             }
         }
+
+
+        $(document).ready(function() {
+            $('#price').priceFormat({
+                prefix: 'VNĐ ',
+                centsSeparator: '.',
+                thousandsSeparator: ','
+            });
+        });
     </script>
-@endsection
 @endsection

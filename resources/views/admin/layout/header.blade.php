@@ -17,7 +17,7 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: aliceblue">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">

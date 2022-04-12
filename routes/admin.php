@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UploadController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ route::group(['prefix' => 'admin', 'middleware'=>'CheckLoginAdmin'], function ()
     Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::get('/', function () {
         return view('admin.layout.master');
-    });
+    })->name('admin.index');
 
     route::prefix('product')->group(function () {
 
@@ -36,6 +37,10 @@ route::group(['prefix' => 'admin', 'middleware'=>'CheckLoginAdmin'], function ()
 
         route::get('/{products}/edit', [ProductController::class, 'edit'])->name('edit.product');
         route::post('/update/{id}', [ProductController::class, 'update'])->name('update.product');
+
+        route::delete('/destroy', [ProductController::class, 'destroy'])->name('admin.destroy.product');
+
+
     });
 
     route::prefix('category')->group(function () {
@@ -55,16 +60,24 @@ route::group(['prefix' => 'admin', 'middleware'=>'CheckLoginAdmin'], function ()
     });
 
     route::prefix('promotion')->group(function () {
+        route::get('/',[PromotionController::class,'index'])->name('index.promotion');
         route::get('/add-promotion', [PromotionController::class, 'create'])->name('add.promotion');
         route::post('/store-promotion', [PromotionController::class, 'store'])->name(('store.promotion'));
+        route::post('/update/{id}',[PromotionController::class,'update'])->name('update.promotion');
+        route::delete('/destroy',[PromotionController::class,'destroy'])->name('destroy.promotion');
+    });
+    route::prefix('Order')->group(function () {
+        route::get('/',[OrderController::class,'index'])->name('index.order');
+        Route::put('/{id}/update-status', [OrderController::class, 'updateStatus'])->name('update_status.order');
+        // route::post('/store-Order', [OrderController::class, 'store'])->name(('store.Order'));
+        // route::post('/update/{id}',[OrderController::class,'update'])->name('update.Order');
+        Route::delete('/destroy', [OrderController::class, 'destroy'])->name('destroy.order');
     });
     route::prefix('images')->group(function () {
         route::post('/create', [UploadController::class, 'store'])->name('store.image');
     });
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 

@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Welcome To Admin Page</h1>
+                @yield('title')
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -23,7 +23,7 @@
 <!-- /.content-header -->
 <section class="content">
     <div class="container-fluid">
-            @include('admin.layout.alert')
+
             @yield('content')
     </div>
 </section>

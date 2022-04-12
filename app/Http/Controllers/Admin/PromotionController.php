@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Promotion;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 
 class PromotionController extends Controller
 {
@@ -14,9 +15,30 @@ class PromotionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $per_page = $request->get('perpage',10);
+        $promotions = Promotion::select('promotions.*');
+
         //
+        // Search Promotion Code
+        if (!empty($request->code)) {
+            $promotions = Promotion::where('code', 'like', '%' . $request->code . '%');
+        }
+         // Search Promotion Discount
+         if (!empty($request->discount)) {
+            $promotions = Promotion::where('discount', 'like', '%' . $request->discount . '%');
+        }
+         // Search Promotion Begin Date
+         if (!empty($request->begin_date)) {
+            $promotions = Promotion::where('discount', 'like', '%' . $request->discount . '%');
+        }
+        $promotions = $promotions->paginate($per_page);
+
+        return view('admin.promotion.index',[
+            'promotions'=>$promotions,
+            'title'=> 'Promotion Manager'
+        ]);
     }
 
     /**
@@ -26,7 +48,7 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        return view('admin.promotion.addPromotion');
+        return view('admin.promotion.create');
     }
 
     /**
@@ -86,7 +108,24 @@ class PromotionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $promotion = Promotion::findOrFail($id);
+        $promotion->code = $request->code;
+        $promotion->discount = $request->discount;
+        $promotion->type = $request->type;
+        $promotion->begin_date = date('Y-m-d 00:00:00', strtotime($request->begin_date));
+        $promotion->end_date = date('Y-m-d 23:59:59', strtotime($request->end_date));
+        $promotion->quantity = $request->quantity;
+        $promotion->status = $request->status;
+        try {
+            // Commit update data for table promotions
+            $promotion->save();
+
+            // success
+            return redirect()->back()->with('success', 'Update Promotion successful!');
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', $ex->getMessage());
+        }
     }
 
     /**
@@ -95,8 +134,20 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $promotion = Promotion::findOrFail($request->input())->first();
+
+        $result = $promotion->delete();
+        if ($result) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Xóa khuyến mãi thành công'
+            ]);
+        }
+        return response()->json([
+            'error' => true,
+            'message' => 'Xóa khuyến mãi không thành công'
+        ]);
     }
 }
