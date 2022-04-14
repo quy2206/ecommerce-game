@@ -17,8 +17,8 @@
         </div>
     </div>
 
-    <table id="order-list" class="table table-bordered table-hover table-striped">
-        <thead class="bg-info">
+    <table id="order-list" class="table table-bordered table-hover ">
+        <thead class="bg-success">
             <tr>
                 <th>No.</th>
                 <th>Name</th>
@@ -44,7 +44,7 @@
                         </td>
                         <td>{{ $order->order_date }}</td>
                         <td>
-                            <a href="" data-bs-toggle="modal"  data-bs-target="#show_order_detail" class="btn btn-secondary btn-common"><i class="fas fa-search-plus"></i> Detail</a>
+                            <a href="" data-bs-toggle="modal"  data-bs-target="#show_order_detail" class="btn btn-primary  btn-common"><i class="fas fa-search-plus"></i> Detail</a>
                         </td>
                         <td>
                             @if (in_array($order->status, [\App\Models\Order::STATUS[3], \App\Models\Order::STATUS[4]]))

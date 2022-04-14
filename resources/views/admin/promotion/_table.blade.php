@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-md-12">
         <table id="product-table" class="table table-bordered data-table">
-            <thead>
+            <thead class="bg-success">
                 <tr>
                     <th width="auto">No</th>
                     <th width="auto">Code</th>
@@ -43,7 +43,7 @@
                         <td>{{ $value->begin_date }}</td>
                         <td>{{ $value->end_date }}</td>
                         <td style="display: flex; gap:5px">
-                            <button class="btn btn-secondary btn-common" data-bs-toggle="modal"
+                            <button class="btn btn-primary btn-common" data-bs-toggle="modal"
                                 data-bs-target="#detail_promotion{{ $key }}" title=""><i
                                     class="fas fa-search-plus"></i>View
                             </button>

@@ -16,7 +16,14 @@
              </div>
              <div class="info">
                  <a href="#" class="d-block">Alexander Pierce</a>
+                 <div class="p-2">
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-secondary" type="submit" onclick="return confirm('Confirm logout')"><i class  ="fa-solid fa-arrow-right-from-bracket "></i> <span class="ml-2">log Out</span></button>
+                      </form>
+                  </div>
              </div>
+
          </div>
 
          <!-- SidebarSearch Form -->

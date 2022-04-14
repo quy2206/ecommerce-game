@@ -17,8 +17,8 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <table id="product-table" class="table table-bordered data-table">
-            <thead>
+        <table id="product-table" class="table table-bordered data-table table-hover">
+            <thead class="bg-success">
                 <tr>
                     <th width="auto">No</th>
                     <th width="auto">Image</th>

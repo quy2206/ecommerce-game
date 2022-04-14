@@ -11,12 +11,12 @@
     <div class="row">
 
         <div class="col-md-10">
-            <table id="cate-table" class="table table-bordered data-table">
-                <thead>
+            <table id="cate-table" class="table table-bordered table-hover">
+                <thead class="bg-success">
                     <tr>
                         <th width="auto">No</th>
                         <th width="auto">Name</th>
-                        <th width="30px">Product List</th>
+                        <th width="auto">Product List</th>
                         <th width="250px">Action</th>
                     </tr>
                 </thead>
